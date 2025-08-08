@@ -1,191 +1,30 @@
-#!/bin/bash
+# Website Status Checker (Bash)
 
-# List of websites to check
-websites=(
-  captivasolutions.eccouncil.org
-idcybersolutions.eccouncil.org
-muscattraininginstitute.eccouncil.org
-ace.eccouncil.org
-aspen.eccouncil.org
-cedsolutions.eccouncil.org
-stg-eclstore.eccouncil.org
-www.iclass.eccouncil.org
-kca.eccouncil.org
-osec.eccouncil.org
-frontend-codered.eccouncil.org
-staging-new.eccouncil.org
-accesscomputertraining.eccouncil.org
-continuing-education-institute.eccouncil.org
-ferrotechnicsinc.eccouncil.org
-affiliates.eccouncil.org
-cyberleague.eccouncil.org
-www.eccouncil.org
-southerntiercybertrainingcenter.eccouncil.org
-checkout.eccouncil.org
-portal.eccouncil.org
-cia.eccouncil.org
-qalearn.eccouncil.org
-www.uat-learn.eccouncil.org
-sisekelosustanabilityinstitute.eccouncil.org
-iclass2.eccouncil.org
-checkout-us.eccouncil.org
-cyberplus.eccouncil.org
-vinsys.eccouncil.org
-helpdesk.eccouncil.org
-learn.eccouncil.org
-checkout-india.eccouncil.org
-indiastore-codered.eccouncil.org
-eclstore.eccouncil.org
-hidt.eccouncil.org
-staging.careers.eccouncil.org
-www.drm.eccouncil.org
-www.cert.eccouncil.org
-blogtest.eccouncil.org
-insightinformationsecurity.eccouncil.org
-fndtst.eccouncil.org
-codered.eccouncil.org
-cybersecuritypro.eccouncil.org
-eccdlp.eccouncil.org
-uat-eccladmin.eccouncil.org
-nextgen.eccouncil.org
-campaigns.eccouncil.org
-cisomag.eccouncil.org
-soebit.eccouncil.org
-www.qalearn.eccouncil.org
-payment.eccouncil.org
-ictacademy.eccouncil.org
-ciso.eccouncil.org
-www.ciso.eccouncil.org
-www.learn.eccouncil.org
-itgnosis.eccouncil.org
-rightvarsity.eccouncil.org
-aletheiasolutionsinc.eccouncil.org
-synergix-enterprise.eccouncil.org
-atc-bestlink-strategies.eccouncil.org
-watanfirstinstitute.eccouncil.org
-dev-iclass.eccouncil.org
-ethicalhacking.eccouncil.org
-rankuketraininginstitute.eccouncil.org
-hub.eccouncil.org
-dev-wpp.iclass.eccouncil.org
-www.store.eccouncil.org
-pmu.eccouncil.org
-masterclass.eccouncil.org
-watanfirstdigitalinstitute.eccouncil.org
-dev-staging.eccouncil.org
-www.aspen.eccouncil.org
-backend-codered.eccouncil.org
-mct.eccouncil.org
-wissen.eccouncil.org
-www.academia.eccouncil.org
-url7581.eccouncil.org
-aptechqatarcomputereducationcentre.eccouncil.org
-blog.eccouncil.org
-test.eccouncil.org
-frank.eccouncil.org
-o1.ptr7784.eccouncil.org
-labs.eccouncil.org
-cybersecurity.eccouncil.org
-eccouncil.org
-academia.eccouncil.org
-cert.eccouncil.org
-iclass.eccouncil.org
-snippet.eccouncil.org
-affiliate.eccouncil.org
-certblog.eccouncil.org
-ilabs.eccouncil.org
-membershipprofile.eccouncil.org
-cybacybersecuritycenter.eccouncil.org
-rntcyberacademy.eccouncil.org
-dev-gravity.eccouncil.org
-qa-codered.eccouncil.org
-zmiqg.eccouncil.org
-www.ace.eccouncil.org
-em3664.eccouncil.org
-pitman.eccouncil.org
-torquetechnicalcomputertraining.eccouncil.org
-staging.eccouncil.org
-cyberq.eccouncil.org
-codered-india.eccouncil.org
-ecctest.eccouncil.org
-associate-cciso.eccouncil.org
-trainingcamp.eccouncil.org
-totalcybersolutionsllc.eccouncil.org
-slammllc.eccouncil.org
-musingtechnology.eccouncil.org
-madgicx.eccouncil.org
-o1.ptr4121.eccouncil.org
-membershipadmin.eccouncil.org
-learnixtreecenter.eccouncil.org
-membership.eccouncil.org
-foundation.eccouncil.org
-rightvarsitytechnologies.eccouncil.org
-66trainingllcservices.eccouncil.org
-store.eccouncil.org
-cyberresearch.eccouncil.org
-egs.eccouncil.org
-coderedcheckout-uk.eccouncil.org
-netlabssolutions.eccouncil.org
-url7204.eccouncil.org
-cyberbrief.eccouncil.org
-o2.ptr7977.eccouncil.org
-www.foundation.eccouncil.org
-bestlinkstrategies.eccouncil.org
-fortifyinstitute.eccouncil.org
-neuronet.eccouncil.org
-qa-cert.eccouncil.org
-procloud.eccouncil.org
-staging-indiastore-codered.eccouncil.org
-coderedcheckout.eccouncil.org
-ebooks.eccouncil.org
-email.eccouncil.org
-learning.eccouncil.org
-dev-wpp.eccouncil.org
-grismtechnologies.eccouncil.org
-cisoconsultancy.eccouncil.org
-mdtechsolutions.eccouncil.org
-try.eccouncil.org
-membership-backend.eccouncil.org
-stg-ciso.eccouncil.org
-www.ilabs.eccouncil.org
-desertclouds.eccouncil.org
-community.eccouncil.org
-aware.eccouncil.org
-ohphish.eccouncil.org
-www.portal.eccouncil.org
-drm.eccouncil.org
-campaign.eccouncil.org
-membership-profile.eccouncil.org
-greencircle.eccouncil.org
-justonesolutionllc.eccouncil.org
-membershipbackend.eccouncil.org
-coderedmarketing.eccouncil.org
-devgeo.eccouncil.org
-o1.ptr4537.eccouncil.org
-ecc-backup.eccouncil.org
+This is a simple **Bash script** to check the availability and response time of multiple websites using `curl`.
 
-)
+It can be useful for **monitoring uptime** of a list of domains/subdomains — in this case, EC-Council subdomains — but can be adapted for any list of sites.
 
-# Function to check website status
-check_website() {
-  local url="$1"
-  response=$(curl -o /dev/null -s -w "%{http_code} %{time_total}" "$url")
-  http_code=$(echo $response | awk '{print $1}')
-  response_time=$(echo $response | awk '{print $2}')
 
-  if [[ "$http_code" == "000" ]]; then
-    echo -e "$url\t\t❌ Unreachable"
-  elif [[ "$http_code" =~ ^2|3 ]]; then
-    echo -e "$url\t\t✅ UP (HTTP $http_code, ${response_time}s)"
-  else
-    echo -e "$url\t\t⚠️ Issue (HTTP $http_code, ${response_time}s)"
-  fi
-}
+## 📌 Features
 
-echo -e "Website\t\t\t\tStatus"
-echo "----------------------------------------------"
+- Checks if each website is **Up**, **Unreachable**, or has an **Issue**.
+- Displays **HTTP status code** and **response time**.
+- Works on Linux and macOS with **`curl`** installed.
+- Easy to modify for your own list of websites.
 
-# Loop through websites and check each
-for site in "${websites[@]}"; do
-  check_website "$site"
-done
+
+## 📂 Usages
+
+**Clone the repository** or download the script:
+   ```bash
+   https://github.com/ifyouknowyou/website-status-check.git
+   cd website-status-check
+   chmod +x website-status-check.sh
+   ./website-status-check.sh
+
+
+1🛠️ Requirements
+
+  sudo apt install curl   # Debian/Ubuntu
+  sudo dnf install curl   # Fedora
+  brew install curl       # macOS
