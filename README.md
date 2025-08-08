@@ -17,11 +17,11 @@ It can be useful for **monitoring uptime** of a list of domains/subdomains — i
 
 1. **Clone the repository** or download the script:
    ```bash
-   git clone https://github.com/yourusername/website-status-checker.git
-   cd website-status-checker
+   https://github.com/ifyouknowyou/website-up-down-check.git
+   cd website-up-down-check
 
-2. chmod +x check_websites.sh
-3. ./check_websites.sh
+2. chmod +x website-up-down-check.sh
+3. ./website-up-down-check.sh
 
 
 🛠️ Requirements
